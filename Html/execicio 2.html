@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+	<head>
+		<meta charset="UTF-8">
+		<title>Exercícios parte 2</title>
+	</head>
+	<body>
+		<header>
+			<h1 style="text-align: center">Exercícios parte 2</h1>
+		</header>
+		<main style="padding: 2% 5%;">
+		
+			<div>
+				<h5>Aqui em baixo temos um botão, e a ideia é fazer um botão igual ao da imagem abaixo</h5>
+				<img src="../Html/Assets/button_one.png" class="interativa" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" onclick="clickImage(this)">
+                    <script>
+                    function clickButton() {
+                      // Ação ao clicar no botão
+                      alert("Botão clicado!");
+                    }
+                    
+                    function mouseOverButton() {
+                      // Ação ao passar o mouse sobre o botão
+                      console.log("Mouse passou sobre o botão");
+                    }
+                    
+                    function mouseOutButton() {
+                      // Ação ao retirar o mouse do botão
+                      console.log("Mouse saiu do botão");
+                    }
+                    </script>
+				<h5>Beleza, layout feito</h5>
+				<h5>Agora vamos adicionar um evento para quando passar o mouse em cima vai dar um destaque ou alguma coisa, tu decide</h5>
+				<h5>Agora um evento ao clicar, faz alguma coisa que ao clicar muda de novo, ou faz algo diferente</h5>
+                  
+			</div>
+		</main>
+	</body>
+</html>

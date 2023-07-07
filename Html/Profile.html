@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script type="module" src="/profile.js"></script>
     <meta charset="UTF-8">
-<title>My Profile</title>
+  <title>My Profile</title>
+  <style>
+    #ball {
+      width: 50px;
+      height: 50px;
+      background-color: rgb(109, 40, 199);
+      border-radius: 50%;
+      position: relative;
+      transition: transform 0.5s;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,7 +27,6 @@
       </ul>
     </nav>
   </header>
-  
   <main>
     <section>
       <h2>About Me</h2>
@@ -31,10 +41,41 @@
        <br>
       <a href="https://github.com/vinicius-andriolli-arndt"> GitHub</a>
     </section>
+    <section>
+      <button style="text-align: right;"  onclick="changeBackground()">change Background</button>
+      <br><br>
+      <section>
+      <div id="ball" onclick="moveBall()"></div>
+      <br>
+      <button onclick="resetBallPossition()">Ball, Come Back!!</button>
+      <br><br>
+    </section>
+      <p id="disappearingText" onclick="toggleText()">Click to disappear</p>
+      <button id="comeBackButton" onclick="toggleText()">Come back!</button>
+    </section>
   </main>
   
   <footer>
     <p>&copy; 2023 My Web Page. All rights reserved.</p>
   </footer>
+  <script>
+    function changeBackground() {
+      var colors = ["lightblue", "lightgreen", "lightpink", "lightyellow", "lightcyan"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.style.backgroundColor = randomColor;
+    }
+
+    function moveBall() {
+      var ball = document.getElementById('ball');
+      var x = Math.floor(Math.random() * window.innerWidth);
+      var y = Math.floor(Math.random() * window.innerHeight);
+      ball.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    }
+
+    function toggleText() {
+      var text = document.getElementById('disappearingText');
+      text.style.display = (text.style.display === 'none') ? 'block' : 'none';
+    }
+  </script>
 </body>
 </html>
