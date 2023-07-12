@@ -8,8 +8,8 @@
     #ball {
       width: 50px;
       height: 50px;
-      background-color: rgb(109, 40, 199);
-      border-radius: 50%;
+      background-image:url('../Html/Assets/fly.png');
+      background-size: cover;
       position: relative;
       transition: transform 0.5s;
     }
@@ -45,7 +45,7 @@
       <button style="text-align: right;"  onclick="changeBackground()">change Background</button>
       <br><br>
       <section>
-      <div id="ball" onclick="moveBall()"></div>
+      <div id="ball" onmouseover="moveBall()"></div>
       <br>
       <button onclick="resetBallPossition()">Ball, Come Back!!</button>
       <br><br>
@@ -69,7 +69,9 @@
       var ball = document.getElementById('ball');
       var x = Math.floor(Math.random() * window.innerWidth);
       var y = Math.floor(Math.random() * window.innerHeight);
-      ball.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+      var a = Math.random() * 1000 - 50;
+      // ball.style.transform = '';
+      ball.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + a + 'deg)';
     }
 
     function toggleText() {
