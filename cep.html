@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consulta de Endereço</title>
+  <style>
+    
+    .cep-input {
+      font-size: 16px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .endereco-input {
+      font-size: 14px;
+      padding: 3px;
+      margin-bottom: 5px;
+    }
+
+    #cep-input {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Consulta de Endereço</h1>
+
+  <label for="cep-input">CEP:</label>
+  <input type="text" id="cep-input" class="cep-input" placeholder="Digite o CEP">
+  <br>
+  <label for="rua-input">Rua:</label>
+  <input type="text" id="rua-input" class="endereco-input" readonly>
+  <br>
+  <label for="complemento-input">Complemento:</label>
+  <input type="text" id="complemento-input" class="endereco-input" readonly>
+  <br>
+  <label for="bairro-input">Bairro:</label>
+  <input type="text" id="bairro-input" class="endereco-input" readonly>
+  <br>
+  <label for="cidade-input">Cidade:</label>
+  <input type="text" id="cidade-input" class="endereco-input" readonly>
+  <br>
+  <label for="estado-input">Estado:</label>
+  <input type="text" id="estado-input" class="endereco-input" readonly>
+  <br>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      var cepInput = document.getElementById('cep-input');
+      cepInput.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '').slice(0, 8);
+        if (this.value.length === 8) {
+          consultarEndereco(this.value);
+        }
+      });
+
+      function consultarEndereco(cep) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://viacep.com.br/ws/' + cep + '/json/');
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              var data = JSON.parse(xhr.responseText);
+              if (!data.erro) {
+                document.getElementById('rua-input').value = data.logradouro;
+                document.getElementById('complemento-input').value = data.complemento;
+                document.getElementById('bairro-input').value = data.bairro;
+                document.getElementById('cidade-input').value = data.localidade;
+                document.getElementById('estado-input').value = data.uf;
+              } else {
+                alert('CEP não encontrado. Por favor, verifique o CEP digitado.');
+              }
+            } else {
+              alert('Ocorreu um erro ao consultar o CEP. Por favor, tente novamente mais tarde.');
+            }
+          }
+        };
+        xhr.send();
+      }
+    });
+  </script>
+</body>
+</html>
